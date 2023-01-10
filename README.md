@@ -1,4 +1,4 @@
-### Hi there 👋
+### What I hear, I forget. What I see, I remember. What I do, I understand.
 
 <!--
 **TheWisker/TheWisker** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
