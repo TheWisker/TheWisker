@@ -1,9 +1,9 @@
 ### What I hear, I forget. What I see, I remember. What I do, I understand.
 
 <p float="left">
-  <img src="./assets/Profile1.png" width="200" />
-  <img src="./assets/Profile2.png" width="200" /> 
-  <img src="./assets/Profile3.png" width="200" />
+  <img src="./assets/Profile1.png" width="300"/>
+  <img src="./assets/Profile2.png" width="300"/>
+  <img src="./assets/Profile3.png" width="300"/>
 </p>
 
 
