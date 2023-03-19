@@ -1,4 +1,4 @@
-### What I hear, I forget. What I see, I remember. What I do, I understand.
+# What I hear, I forget. What I see, I remember. What I do, I understand.
 
 <p float="left">
   <img src="./assets/Profile1.png" width="250"/>
