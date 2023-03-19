@@ -1,7 +1,11 @@
 ### What I hear, I forget. What I see, I remember. What I do, I understand.
 
-![Profile1](./assets/Profile1.png "Profile1")
-![Profile2](./assets/Profile2.png "Profile2") ![Profile3](./assets/Profile3.png "Profile3")
+<p float="left">
+  <img src="./assets/Profile1.png" width="200" />
+  <img src="./assets/Profile2.png" width="200" /> 
+  <img src="./assets/Profile3.png" width="200" />
+</p>
+
 
 <!--
 **TheWisker/TheWisker** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
