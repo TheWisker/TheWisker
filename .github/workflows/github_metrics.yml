@@ -45,14 +45,14 @@ jobs:
           plugin_licenses_legal: yes
           
           user: ${{ github.repository_owner }}
-          committer_branch: metrics
+          committer_branch: master
           committer_message: Metrics added ${filename}
-          filename: ${{ github.repository_owner }}-metrics.*
+          filename: assets/${{ github.repository_owner }}-metrics.*
           output_action: commit
           output_condition: data-changed
           optimize: css, xml, svg
-          config_twemoji: yes
-          config_gemoji: no
+          config_twemoji: no
+          config_gemoji: yes
           config_octicon: no
           config_display: columns
           config_animations: yes
