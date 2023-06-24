@@ -193,7 +193,7 @@ jobs:
         shell: bash
         run: |
           mkdir -p ./assets/metrics
-          mv -f /metrics_renders/* ./assets/metrics
+          cp -f /metrics_renders/* ./assets/metrics
           
           echo "Flushed Metrics"
 
