@@ -200,7 +200,8 @@ jobs:
       - name: Update Repository
         shell: bash
         run: |
-          git commit -am "Metrics Update"
+          git add .
+          git commit -m "Metrics Update"
           git push
           
           echo "Updated Repository"
