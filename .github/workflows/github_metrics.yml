@@ -1,11 +1,8 @@
 name: GitHub Metrics
+run-name: Updating ${{ github.event.repository.name }} metrics
 on:
   schedule:
     - cron:  '0 0 * * *'
-    - cron:  '0 12 * * *'
-  push:
-    branches:
-      - 'master'
   workflow_dispatch:
 permissions:
   contents: write
@@ -33,156 +30,269 @@ jobs:
           echo "Configured Git Credentials"
     
       - name: Base Metrics
-        uses: TheWisker/StaticMetrics@master
+        uses: TheWisker/Metrics@master
         with:
-          base: header, activity, community, repositories, metadata
           token: ${{ secrets.METRICS_TOKEN }}
-          repositories_affiliations: owner, collaborator, organization_member
           user: ${{ github.repository_owner }}
+          #repo:
+          #committer_token:
+          #committer_branch:
+          #committer_message:
+          #committer_gist:
           filename: base.*
+          #markdown:
+          #markdown_cache:
           output_action: none
           output_condition: data-changed
           optimize: css, xml, svg
-          config_display: columns
+          #setup_community_templates:
+          #template:
+          #query:
+          #extras_css:
+          #extras_js:
+          #github_api_rest:
+          #github_api_graphql:
+          config_timezone: Europe/Madrid
+          #config_order:
+          #config_twemoji:
+          config_gemoji: yes
+          #config_octicon:
+          config_display: regular
           config_animations: yes
           config_base64: yes
-          config_output: svg
+          #config_padding:
+          config_output: markdown
+          #config_presets:
           retries: 5
           retries_delay: 600
           retries_output_action: 5
           retries_delay_output_action: 300
+          clean_workflows: failure
+          #delay:
+          #quota_required_rest:
+          #quota_required_graphql:
+          #quota_required_search:
           notice_releases: yes
           use_prebuilt_image: yes
+          #plugins_errors_fatal:
+          debug: no
+          verify: no
+          #debug_flags:
+          #debug_print:
+          #dryrun:
           experimental_features: --optimize-svg
-    
-      - name: Introduction Metrics
-        uses: TheWisker/StaticMetrics@master
-        with:
-          base: ""
-          token: ${{ secrets.METRICS_TOKEN }}
+          #use_mocked_data
+          base: header, activity, community, repositories
+          base_indepth: yes
+          #base_hireable:
+          #base_skip:
+          repositories: 200
+          repositories_batch: 100
+          repositories_forks: yes
           repositories_affiliations: owner, collaborator, organization_member
-          plugin_introduction: yes
-          plugin_introduction_title: Introduction
-          user: ${{ github.repository_owner }}
-          filename: introduction.*
-          output_action: none
-          output_condition: data-changed
-          optimize: css, xml, svg
-          config_display: columns
-          config_animations: yes
-          config_base64: yes
-          config_output: svg
-          retries: 5
-          retries_delay: 600
-          retries_output_action: 5
-          retries_delay_output_action: 300
-          notice_releases: yes
-          use_prebuilt_image: yes
-          experimental_features: --optimize-svg
+          #repositories_skipped:
+          #users_ignored:
+          #commits_authoring:
+          plugin_traffic: yes
+          #plugin_traffic_skipped:
           
-      - name: Language Metrics
-        uses: TheWisker/StaticMetrics@master
+      - name: Languages Metrics
+        uses: TheWisker/Metrics@master
         with:
-          base: ""
           token: ${{ secrets.METRICS_TOKEN }}
-          repositories_affiliations: owner, collaborator, organization_member
-          plugin_languages: yes
-          plugin_languages_limit: 0
-          plugin_languages_details: percentage, lines
-          plugin_languages_indepth: yes
           user: ${{ github.repository_owner }}
-          filename: language.*
+          #repo:
+          #committer_token:
+          #committer_branch:
+          #committer_message:
+          #committer_gist:
+          filename: languages.*
+          #markdown:
+          #markdown_cache:
           output_action: none
           output_condition: data-changed
           optimize: css, xml, svg
-          config_display: columns
+          #setup_community_templates:
+          #template:
+          #query:
+          #extras_css:
+          #extras_js:
+          #github_api_rest:
+          #github_api_graphql:
+          config_timezone: Europe/Madrid
+          #config_order:
+          #config_twemoji:
+          config_gemoji: yes
+          #config_octicon:
+          config_display: regular
           config_animations: yes
           config_base64: yes
-          config_output: svg
+          #config_padding:
+          config_output: markdown
+          #config_presets:
           retries: 5
           retries_delay: 600
           retries_output_action: 5
           retries_delay_output_action: 300
+          clean_workflows: failure
+          #delay:
+          #quota_required_rest:
+          #quota_required_graphql:
+          #quota_required_search:
           notice_releases: yes
           use_prebuilt_image: yes
+          #plugins_errors_fatal:
+          debug: no
+          verify: no
+          #debug_flags:
+          #debug_print:
+          #dryrun:
           experimental_features: --optimize-svg
+          #use_mocked_data
+          base: ""
+          plugin_languages: yes
+          #plugin_languages_ignored:
+          #plugin_languages_skipped:
+          plugin_languages_limit: 0
+          #plugin_languages_threshold:
+          #plugin_languages_other:
+          #plugin_languages_colors:
+          #plugin_languages_aliases:
+          plugin_languages_sections: most-used
+          plugin_languages_details: bytes-size, percentage, lines
+          plugin_languages_indepth: yes
+          #plugin_languages_indepth_custom:
+          plugin_languages_analysis_timeout: 60
+          plugin_languages_analysis_timeout_repositories: 15
+          #plugin_languages_categories:
+          #plugin_languages_recent_categories:
+          plugin_languages_recent_load: 1000
+          plugin_languages_recent_days: 365
           
       - name: Habits Metrics
-        uses: TheWisker/StaticMetrics@master
+        uses: TheWisker/Metrics@master
         with:
-          base: ""
           token: ${{ secrets.METRICS_TOKEN }}
-          repositories_affiliations: owner, collaborator, organization_member
-          plugin_habits: yes
-          plugin_habits_from: 500
-          plugin_habits_days: 21
-          plugin_habits_facts: yes
-          plugin_habits_languages_limit: 0
           user: ${{ github.repository_owner }}
+          #repo:
+          #committer_token:
+          #committer_branch:
+          #committer_message:
+          #committer_gist:
           filename: habits.*
+          #markdown:
+          #markdown_cache:
           output_action: none
           output_condition: data-changed
           optimize: css, xml, svg
-          config_display: columns
+          #setup_community_templates:
+          #template:
+          #query:
+          #extras_css:
+          #extras_js:
+          #github_api_rest:
+          #github_api_graphql:
+          config_timezone: Europe/Madrid
+          #config_order:
+          #config_twemoji:
+          config_gemoji: yes
+          #config_octicon:
+          config_display: regular
           config_animations: yes
           config_base64: yes
-          config_output: svg
+          #config_padding:
+          config_output: markdown
+          #config_presets:
           retries: 5
           retries_delay: 600
           retries_output_action: 5
           retries_delay_output_action: 300
+          clean_workflows: failure
+          #delay:
+          #quota_required_rest:
+          #quota_required_graphql:
+          #quota_required_search:
           notice_releases: yes
           use_prebuilt_image: yes
+          #plugins_errors_fatal:
+          debug: no
+          verify: no
+          #debug_flags:
+          #debug_print:
+          #dryrun:
           experimental_features: --optimize-svg
-          
-      - name: Traffic Metrics
-        uses: TheWisker/StaticMetrics@master
-        with:
+          #use_mocked_data
           base: ""
-          token: ${{ secrets.METRICS_TOKEN }}
-          repositories_affiliations: owner, collaborator, organization_member
-          plugin_traffic: yes
-          user: ${{ github.repository_owner }}
-          filename: traffic.*
-          output_action: none
-          output_condition: data-changed
-          optimize: css, xml, svg
-          config_display: columns
-          config_animations: yes
-          config_base64: yes
-          config_output: svg
-          retries: 5
-          retries_delay: 600
-          retries_output_action: 5
-          retries_delay_output_action: 300
-          notice_releases: yes
-          use_prebuilt_image: yes
-          experimental_features: --optimize-svg
+          plugin_habits: yes
+          plugin_habits_from: 1000
+          #plugin_habits_skipped:
+          plugin_habits_days: 30
+          plugin_habits_facts: yes
+          plugin_habits_charts: no
+          #plugin_habits_charts_type:
+          #plugin_habits_trim:
+          plugin_habits_languages_limit: 0
+          #plugin_habits_languages_threshold:
           
-      - name: Licenses Metrics
-        uses: TheWisker/StaticMetrics@master
+      - name: Lines Metrics
+        uses: TheWisker/Metrics@master
         with:
-          base: ""
           token: ${{ secrets.METRICS_TOKEN }}
-          repositories_affiliations: owner, collaborator, organization_member
-          plugin_licenses: yes
-          plugin_licenses_legal: yes
           user: ${{ github.repository_owner }}
-          filename: licenses.*
+          #repo:
+          #committer_token:
+          #committer_branch:
+          #committer_message:
+          #committer_gist:
+          filename: lines.*
+          #markdown:
+          #markdown_cache:
           output_action: none
           output_condition: data-changed
           optimize: css, xml, svg
-          config_display: columns
+          #setup_community_templates:
+          #template:
+          #query:
+          #extras_css:
+          #extras_js:
+          #github_api_rest:
+          #github_api_graphql:
+          config_timezone: Europe/Madrid
+          #config_order:
+          #config_twemoji:
+          config_gemoji: yes
+          #config_octicon:
+          config_display: regular
           config_animations: yes
           config_base64: yes
-          config_output: svg
+          #config_padding:
+          config_output: markdown
+          #config_presets:
           retries: 5
           retries_delay: 600
           retries_output_action: 5
           retries_delay_output_action: 300
+          clean_workflows: failure
+          #delay:
+          #quota_required_rest:
+          #quota_required_graphql:
+          #quota_required_search:
           notice_releases: yes
           use_prebuilt_image: yes
+          #plugins_errors_fatal:
+          debug: no
+          verify: no
+          #debug_flags:
+          #debug_print:
+          #dryrun:
           experimental_features: --optimize-svg
+          #use_mocked_data
+          base: ""
+          plugin_lines: yes
+          #plugin_lines_skipped:
+          plugin_lines_sections: history
+          #plugin_lines_repositories_limit:
+          plugin_lines_history_limit: 1
 
       - name: Checkout
         uses: actions/checkout@v3
@@ -192,6 +302,7 @@ jobs:
       - name: Flush Metrics
         shell: bash
         run: |
+          rm -fr ./assets/metrics
           mkdir -p ./assets/metrics
           cp -f /metrics_renders/* ./assets/metrics
           
