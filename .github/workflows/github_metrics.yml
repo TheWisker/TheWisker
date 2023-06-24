@@ -30,7 +30,7 @@ jobs:
           echo "Configured Git Credentials"
     
       - name: Base Metrics
-        uses: TheWisker/Metrics@master
+        uses: TheWisker/GitHubMetrics@master
         with:
           token: ${{ secrets.METRICS_TOKEN }}
           user: ${{ github.repository_owner }}
@@ -97,7 +97,7 @@ jobs:
           #plugin_traffic_skipped:
           
       - name: Languages Metrics
-        uses: TheWisker/Metrics@master
+        uses: TheWisker/GitHubMetrics@master
         with:
           token: ${{ secrets.METRICS_TOKEN }}
           user: ${{ github.repository_owner }}
@@ -170,7 +170,7 @@ jobs:
           plugin_languages_recent_days: 365
           
       - name: Habits Metrics
-        uses: TheWisker/Metrics@master
+        uses: TheWisker/GitHubMetrics@master
         with:
           token: ${{ secrets.METRICS_TOKEN }}
           user: ${{ github.repository_owner }}
@@ -235,7 +235,7 @@ jobs:
           #plugin_habits_languages_threshold:
           
       - name: Lines Metrics
-        uses: TheWisker/Metrics@master
+        uses: TheWisker/GitHubMetrics@master
         with:
           token: ${{ secrets.METRICS_TOKEN }}
           user: ${{ github.repository_owner }}
