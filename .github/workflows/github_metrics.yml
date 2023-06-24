@@ -18,6 +18,20 @@ jobs:
     environment:
       name: profile-metrics
     steps:
+      - name: Configure Git Credentials
+        shell: bash
+        env:
+          username: ${{ github.repository_owner }}
+          email: TheWisker@protonmail.com
+          repo_name: ${{ github.event.repository.name }}
+        run: |
+          git config --global user.name $username
+          git config --global user.email $email
+          git config --global init.defaultBranch master
+          git config --global --add safe.directory /__w/$repo_name/$repo_name
+          
+          echo "Configured Git Credentials"
+    
       - name: Base Metrics
         uses: TheWisker/StaticMetrics@master
         with:
@@ -25,7 +39,7 @@ jobs:
           token: ${{ secrets.METRICS_TOKEN }}
           repositories_affiliations: owner, collaborator, organization_member
           user: ${{ github.repository_owner }}
-          filename: assets/metrics/base.*
+          filename: base.*
           output_action: none
           output_condition: data-changed
           optimize: css, xml, svg
@@ -50,7 +64,7 @@ jobs:
           plugin_introduction: yes
           plugin_introduction_title: Introduction
           user: ${{ github.repository_owner }}
-          filename: assets/metrics/introduction.*
+          filename: introduction.*
           output_action: none
           output_condition: data-changed
           optimize: css, xml, svg
@@ -77,7 +91,7 @@ jobs:
           plugin_languages_details: percentage, lines
           plugin_languages_indepth: yes
           user: ${{ github.repository_owner }}
-          filename: assets/metrics/language.*
+          filename: language.*
           output_action: none
           output_condition: data-changed
           optimize: css, xml, svg
@@ -105,7 +119,7 @@ jobs:
           plugin_habits_facts: yes
           plugin_habits_languages_limit: 0
           user: ${{ github.repository_owner }}
-          filename: assets/metrics/habits.*
+          filename: habits.*
           output_action: none
           output_condition: data-changed
           optimize: css, xml, svg
@@ -129,7 +143,7 @@ jobs:
           repositories_affiliations: owner, collaborator, organization_member
           plugin_traffic: yes
           user: ${{ github.repository_owner }}
-          filename: assets/metrics/traffic.*
+          filename: traffic.*
           output_action: none
           output_condition: data-changed
           optimize: css, xml, svg
@@ -154,7 +168,7 @@ jobs:
           plugin_licenses: yes
           plugin_licenses_legal: yes
           user: ${{ github.repository_owner }}
-          filename: assets/metrics/licenses.*
+          filename: licenses.*
           output_action: none
           output_condition: data-changed
           optimize: css, xml, svg
@@ -168,4 +182,25 @@ jobs:
           retries_delay_output_action: 300
           notice_releases: yes
           use_prebuilt_image: yes
-          experimental_features: --optimize-svg      
+          experimental_features: --optimize-svg
+
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: master
+
+      - name: Flush Metrics
+        shell: bash
+        run: |
+          mkdir -p ./assets/metrics
+          mv -f /metrics_renders/* ./assets/metrics
+          
+          echo "Flushed Metrics"
+
+      - name: Update Repository
+        shell: bash
+        run: |
+          git commit -am "Metrics Update"
+          git push
+          
+          echo "Updated Repository"
