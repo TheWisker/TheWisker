@@ -61,7 +61,7 @@ jobs:
           config_animations: yes
           config_base64: yes
           #config_padding:
-          config_output: markdown
+          config_output: auto
           #config_presets:
           retries: 5
           retries_delay: 600
@@ -128,7 +128,7 @@ jobs:
           config_animations: yes
           config_base64: yes
           #config_padding:
-          config_output: markdown
+          config_output: auto
           #config_presets:
           retries: 5
           retries_delay: 600
@@ -201,7 +201,7 @@ jobs:
           config_animations: yes
           config_base64: yes
           #config_padding:
-          config_output: markdown
+          config_output: auto
           #config_presets:
           retries: 5
           retries_delay: 600
@@ -266,7 +266,7 @@ jobs:
           config_animations: yes
           config_base64: yes
           #config_padding:
-          config_output: markdown
+          config_output: auto
           #config_presets:
           retries: 5
           retries_delay: 600
