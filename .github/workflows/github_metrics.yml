@@ -18,43 +18,17 @@ jobs:
     environment:
       name: profile-metrics
     steps:
-      - uses: TheWisker/StaticMetrics@master
+      - name: Base Metrics
+        uses: TheWisker/StaticMetrics@master
         with:
-          token: ${{ secrets.METRICS_TOKEN }}
-          committer_token: ${{ github.token }}
-          
           base: header, activity, community, repositories, metadata
+          token: ${{ secrets.METRICS_TOKEN }}
           repositories_affiliations: owner, collaborator, organization_member
-          
-          plugin_introduction: yes
-          plugin_introduction_title: Introduction
-          
-          plugin_languages: yes
-          plugin_languages_limit: 0
-          plugin_languages_details: percentage, lines
-          plugin_languages_indepth: yes
-          
-          plugin_habits: yes
-          plugin_habits_from: 500
-          plugin_habits_days: 21
-          plugin_habits_facts: yes
-          plugin_habits_languages_limit: 0
-          
-          plugin_traffic: yes
-          
-          plugin_licenses: yes
-          plugin_licenses_legal: yes
-          
           user: ${{ github.repository_owner }}
-          committer_branch: master
-          committer_message: Metrics added ${filename}
-          filename: assets/${{ github.repository_owner }}-metrics.*
-          output_action: commit
+          filename: assets/metrics/base.*
+          output_action: none
           output_condition: data-changed
           optimize: css, xml, svg
-          config_twemoji: no
-          config_gemoji: yes
-          config_octicon: no
           config_display: columns
           config_animations: yes
           config_base64: yes
@@ -66,3 +40,132 @@ jobs:
           notice_releases: yes
           use_prebuilt_image: yes
           experimental_features: --optimize-svg
+    
+      - name: Introduction Metrics
+        uses: TheWisker/StaticMetrics@master
+        with:
+          base: ""
+          token: ${{ secrets.METRICS_TOKEN }}
+          repositories_affiliations: owner, collaborator, organization_member
+          plugin_introduction: yes
+          plugin_introduction_title: Introduction
+          user: ${{ github.repository_owner }}
+          filename: assets/metrics/introduction.*
+          output_action: none
+          output_condition: data-changed
+          optimize: css, xml, svg
+          config_display: columns
+          config_animations: yes
+          config_base64: yes
+          config_output: svg
+          retries: 5
+          retries_delay: 600
+          retries_output_action: 5
+          retries_delay_output_action: 300
+          notice_releases: yes
+          use_prebuilt_image: yes
+          experimental_features: --optimize-svg
+          
+      - name: Language Metrics
+        uses: TheWisker/StaticMetrics@master
+        with:
+          base: ""
+          token: ${{ secrets.METRICS_TOKEN }}
+          repositories_affiliations: owner, collaborator, organization_member
+          plugin_languages: yes
+          plugin_languages_limit: 0
+          plugin_languages_details: percentage, lines
+          plugin_languages_indepth: yes
+          user: ${{ github.repository_owner }}
+          filename: assets/metrics/language.*
+          output_action: none
+          output_condition: data-changed
+          optimize: css, xml, svg
+          config_display: columns
+          config_animations: yes
+          config_base64: yes
+          config_output: svg
+          retries: 5
+          retries_delay: 600
+          retries_output_action: 5
+          retries_delay_output_action: 300
+          notice_releases: yes
+          use_prebuilt_image: yes
+          experimental_features: --optimize-svg
+          
+      - name: Habits Metrics
+        uses: TheWisker/StaticMetrics@master
+        with:
+          base: ""
+          token: ${{ secrets.METRICS_TOKEN }}
+          repositories_affiliations: owner, collaborator, organization_member
+          plugin_habits: yes
+          plugin_habits_from: 500
+          plugin_habits_days: 21
+          plugin_habits_facts: yes
+          plugin_habits_languages_limit: 0
+          user: ${{ github.repository_owner }}
+          filename: assets/metrics/habits.*
+          output_action: none
+          output_condition: data-changed
+          optimize: css, xml, svg
+          config_display: columns
+          config_animations: yes
+          config_base64: yes
+          config_output: svg
+          retries: 5
+          retries_delay: 600
+          retries_output_action: 5
+          retries_delay_output_action: 300
+          notice_releases: yes
+          use_prebuilt_image: yes
+          experimental_features: --optimize-svg
+          
+      - name: Traffic Metrics
+        uses: TheWisker/StaticMetrics@master
+        with:
+          base: ""
+          token: ${{ secrets.METRICS_TOKEN }}
+          repositories_affiliations: owner, collaborator, organization_member
+          plugin_traffic: yes
+          user: ${{ github.repository_owner }}
+          filename: assets/metrics/traffic.*
+          output_action: none
+          output_condition: data-changed
+          optimize: css, xml, svg
+          config_display: columns
+          config_animations: yes
+          config_base64: yes
+          config_output: svg
+          retries: 5
+          retries_delay: 600
+          retries_output_action: 5
+          retries_delay_output_action: 300
+          notice_releases: yes
+          use_prebuilt_image: yes
+          experimental_features: --optimize-svg
+          
+      - name: Licenses Metrics
+        uses: TheWisker/StaticMetrics@master
+        with:
+          base: ""
+          token: ${{ secrets.METRICS_TOKEN }}
+          repositories_affiliations: owner, collaborator, organization_member
+          plugin_licenses: yes
+          plugin_licenses_legal: yes
+          user: ${{ github.repository_owner }}
+          filename: assets/metrics/licenses.*
+          output_action: none
+          output_condition: data-changed
+          optimize: css, xml, svg
+          config_display: columns
+          config_animations: yes
+          config_base64: yes
+          config_output: svg
+          retries: 5
+          retries_delay: 600
+          retries_output_action: 5
+          retries_delay_output_action: 300
+          notice_releases: yes
+          use_prebuilt_image: yes
+          experimental_features: --optimize-svg      
