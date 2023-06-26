@@ -2,13 +2,13 @@
 
 <div align="center">
   <picture>
-    <img src="./assets/Profile1.png" width="250"/>
+    <img src="./assets/deco/first.png" width="250"/>
   </picture>
   <picture>
-    <img src="./assets/Profile2.png" width="250"/>
+    <img src="./assets/deco/second.png" width="250"/>
   </picture>
   <picture>
-    <img src="./assets/Profile3.png" width="250"/>
+    <img src="./assets/deco/third.png" width="250"/>
   </picture>
 </div>
 
